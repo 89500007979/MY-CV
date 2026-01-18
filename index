@@ -1,1 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dmitrii Mihalev - IT Project Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --accent: #06b6d4;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(2, 132, 199, 0.15);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header .title {
+            font-size: 1.5rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        header .contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+        }
+
+        header .contact a {
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        header .contact a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(6, 182, 212, 0.1) 0%, rgba(2, 132, 199, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin: 2rem 0;
+        }
+
+        .job {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .job:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .job-company {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .job-dates {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .achievement {
+            background: #f1f5f9;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+            color: var(--text);
+        }
+
+        .achievement::before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .skill-category h4 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .stat {
+            display: inline-block;
+            background: rgba(2, 132, 199, 0.1);
+            padding: 0.3rem 0.8rem;
+            margin: 0.25rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(2, 132, 199, 0.2);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+        }
+
+        .education-item {
+            background: #f1f5f9;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .education-year {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .education-title {
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .education-org {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .about {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .about p {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .job-header {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #f1f5f9;
+                --text-light: #cbd5e1;
+                --bg: #0f172a;
+                --card-bg: #1e293b;
+                --border: #334155;
+            }
+
+            body {
+                background: linear-gradient(135deg, #0f172a 0%, #1a2a47 100%);
+            }
+
+            section {
+                background: var(--card-bg);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            .skill-category {
+                background: #334155;
+            }
+
+            .project {
+                background: linear-gradient(135deg, #1e293b 0%, #0f2a3e 100%);
+            }
+
+            .education-item {
+                background: #334155;
+            }
+
+            .achievement {
+                background: #334155;
+            }
+
+            .stat-box {
+                background: linear-gradient(135deg, rgba(2, 132, 199, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+                border-color: rgba(2, 132, 199, 0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dmitrii Mihalev</h1>
+        <div class="title">IT Project Manager | Delivery Manager | Systems Architect</div>
+        <div class="contact">
+            <a href="tel:+79500007979">📞 +7 (950) 000-7979</a>
+            <a href="https://telegram.me/Dmitrii_Mihalev">✈️ Telegram</a>
+            <a href="mailto:89500007979@mail.ru">📧 Email</a>
+            <a href="https://wa.me/79500007979">💬 WhatsApp</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- About Section -->
+        <section>
+            <h2>About Me</h2>
+            <div class="about">
+                <p>Senior IT Project Manager with <strong>11+ years of experience</strong> managing complex enterprise projects and cross-functional teams (up to 45 people). Specialized in Agile methodologies, software architecture, and business-technology alignment.</p>
+                <p>Strong expertise in managing budgets up to <strong>₽250+ million</strong>, implementing enterprise systems, and delivering tangible business results. Proven track record of on-time project delivery, cost optimization, and team leadership.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">11+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">₽250M+</div>
+                    <div class="stat-label">Budget Managed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">Team Members</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Role -->
+        <section>
+            <h2>Current Position</h2>
+            <div class="highlight">
+                <div class="job-title">IT Project Manager</div>
+                <div class="job-company">Gazprom Neft (PAO) — Oil & Gas</div>
+                <div class="job-dates">April 2023 – Present (2+ years)</div>
+            </div>
+
+            <h3 style="color: var(--primary); margin: 2rem 0 1rem; font-size: 1.2rem;">Major Projects</h3>
+            
+            <div class="project">
+                <div class="project-name">B2B E-Commerce Platform (Customer/Supplier Portal)</div>
+                <div class="project-meta">Duration: 24 months | Users: 19,000+ | Budget: ₽150+ million</div>
+                <p>Launched 2 months ahead of schedule, delivering fully integrated e-commerce platform for supplier and customer portals.</p>
+                <div style="margin-top: 0.5rem;">
+                    <span class="stat">B2B E-Commerce</span>
+                    <span class="stat">Scrum</span>
+                    <span class="stat">Budget Management</span>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-name">Remote AR Inspection System</div>
+                <div class="project-meta">Duration: 24 months | Users: 2,000+ | Budget: ₽50+ million</div>
+                <p>Implemented augmented reality solution for remote site monitoring and control across iOS, Android, and Web platforms.</p>
+                <div style="margin-top: 0.5rem;">
+                    <span class="stat">AR/VR</span>
+                    <span class="stat">Cross-Platform</span>
+                    <span class="stat">B2B/B2G</span>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary); margin: 2rem 0 1rem; font-size: 1.2rem;">Key Achievements</h3>
+            
+            <div class="achievement">Delivered Supplier Portal 2 months early through optimized backlog management, saving 1,000+ man-hours per month</div>
+            <div class="achievement">Reduced project Lead time by 10%, cutting development costs by 7% while maintaining quality standards</div>
+            <div class="achievement">Optimized budgets for 2 major projects by 15% (₽25+ million savings) via resource optimization and vendor negotiations</div>
+            <div class="achievement">Standardized UAT checklist across project teams, reducing production deployment time by 15%</div>
+            <div class="achievement">Established communication and technical processes for AR/VR team, delivering prototype in 3 months</div>
+        </section>
+
+        <!-- Previous Experience -->
+        <section>
+            <h2>Experience</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">IT Project Manager</div>
+                        <div class="job-company">Omega Technologies (IT Systems Integration)</div>
+                    </div>
+                    <div class="job-dates">Jan 2021 – Apr 2023 (2.3 years)</div>
+                </div>
+                <p style="margin-bottom: 1rem; color: var(--text-light);">Managed enterprise system implementation projects for B2B/B2G clients, leading cross-functional teams of 18+ people.</p>
+                <div class="achievement">Successfully implemented corporate information systems for 5+ government and municipal clients, improving reporting efficiency by 40%</div>
+                <div class="achievement">Developed standardized 1C Document Management solution, accelerating implementations by 20%</div>
+                <div class="achievement">Secured 3 additional contract extensions through successful first-phase delivery, increasing project revenue by 28%</div>
+                <div class="achievement">Reduced equipment procurement costs by 25% through vendor negotiations and cost management</div>
+                <div class="achievement">Implemented daily standup system, increasing team engagement by 25% and reducing key staff turnover to 0%</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Project Manager</div>
+                        <div class="job-company">Svyazhtorg #1 (Telecommunications & Metals Trading)</div>
+                    </div>
+                    <div class="job-dates">Jan 2015 – Nov 2020 (5.9 years)</div>
+                </div>
+                <p style="margin-bottom: 1rem; color: var(--text-light);">Managed sales projects, procurement, and market development initiatives for major enterprise clients.</p>
+                <div class="achievement">Increased sales for 3 major projects by 50% over 2 years through CRM implementation and process optimization</div>
+                <div class="achievement">Implemented accounts receivable control system, reducing overdue debt by 35%</div>
+                <div class="achievement">Executed cost reduction project achieving 15% savings from procurement budget (60+ million rubles annually)</div>
+                <div class="achievement">Increased KPI achievement to 125% through coaching programs and individual development plans</div>
+                <div class="achievement">Established key account management model, generating 60+ million rubles in annual recurring revenue</div>
+            </div>
+        </section>
+
+        <!-- Technical Stack -->
+        <section>
+            <h2>Technical Stack & Tools</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Languages & Frameworks</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">Node.js</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Databases & Cache</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">GreenPlum</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">ElasticSearch</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>DevOps & CI/CD</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">GitLab CI/CD</span>
+                        <span class="skill-tag">Ansible</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Security & Compliance</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SAST/DAST</span>
+                        <span class="skill-tag">Encryption</span>
+                        <span class="skill-tag">DevSecOps</span>
+                        <span class="skill-tag">DLP</span>
+                        <span class="skill-tag">PII Protection</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Monitoring & Analytics</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag">Qlik Sense</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>PM & Collaboration</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JIRA</span>
+                        <span class="skill-tag">Confluence</span>
+                        <span class="skill-tag">Notion</span>
+                        <span class="skill-tag">Miro</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PM Expertise -->
+        <section>
+            <h2>Project Management Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Methodologies</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Kanban</span>
+                        <span class="skill-tag">Waterfall</span>
+                        <span class="skill-tag">Lean</span>
+                        <span class="skill-tag">PRINCE2</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>PMBOK Knowledge Areas</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scope</span>
+                        <span class="skill-tag">Time</span>
+                        <span class="skill-tag">Cost</span>
+                        <span class="skill-tag">Quality</span>
+                        <span class="skill-tag">Risk</span>
+                        <span class="skill-tag">Stakeholder</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Core PM Skills</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Budget Management</span>
+                        <span class="skill-tag">Risk Management</span>
+                        <span class="skill-tag">Stakeholder Mgmt</span>
+                        <span class="skill-tag">Business Analysis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Technical Analysis</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">System Design</span>
+                        <span class="skill-tag">Architecture</span>
+                        <span class="skill-tag">Requirements</span>
+                        <span class="skill-tag">QA/Testing</span>
+                        <span class="skill-tag">Automation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section>
+            <h2>Education & Certifications</h2>
+
+            <h3 style="color: var(--primary); margin: 1.5rem 0 1rem; font-size: 1.1rem;">Education</h3>
+            <div class="education-item">
+                <div class="education-year">2015</div>
+                <div class="education-title">Engineer of Transport & Technological Equipment</div>
+                <div class="education-org">Saint Petersburg State Economic University</div>
+            </div>
+
+            <h3 style="color: var(--primary); margin: 1.5rem 0 1rem; font-size: 1.1rem;">Certifications & Courses</h3>
+            <div class="education-item">
+                <div class="education-year">2024</div>
+                <div class="education-title">Delivery Manager & Kanban Systems Fundamentals</div>
+                <div class="education-org">Scrum Trek, Gazprom Neft University</div>
+            </div>
+            <div class="education-item">
+                <div class="education-year">2023</div>
+                <div class="education-title">Agile & Scrum in Projects | Project Leadership 4.0</div>
+                <div class="education-org">Gazprom Neft Corporate University</div>
+            </div>
+            <div class="education-item">
+                <div class="education-year">2022</div>
+                <div class="education-title">IT Project Management | Yandex</div>
+                <div class="education-org">Yandex University, Alpha Experience</div>
+            </div>
+            <div class="education-item">
+                <div class="education-year">2025</div>
+                <div class="education-title">DevOps Fundamentals & Linux</div>
+                <div class="education-org">STEPIC Online Learning Platform</div>
+            </div>
+        </section>
+
+        <!-- Languages -->
+        <section>
+            <h2>Languages</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Russian</h4>
+                    <p style="color: var(--text-light);">Native Speaker</p>
+                </div>
+                <div class="skill-category">
+                    <h4>English</h4>
+                    <p style="color: var(--text-light);">A2 - Elementary</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location & Additional Info -->
+        <section>
+            <h2>Location & Additional Info</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">📍 Location</h4>
+                    <p style="color: var(--text-light);">Saint Petersburg, Russia</p>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Open to Moscow opportunities</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">🎯 Work Preferences</h4>
+                    <p style="color: var(--text-light);">On-site / Full-time</p>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Ready for business trips</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">🚗 Driver's License</h4>
+                    <p style="color: var(--text-light);">Categories B, C</p>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">🌟 Additional</h4>
+                    <p style="color: var(--text-light);">Prompt Engineering</p>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.3rem;">Book club leader (PM literature)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section style="text-align: center; background: linear-gradient(135deg, rgba(2, 132, 199, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);">
+            <h2>Let's Connect</h2>
+            <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                Open to discussions about IT project management, system architecture, and team leadership opportunities
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="tel:+79500007979" class="cta-button">📞 Call Me</a>
+                <a href="https://telegram.me/Dmitrii_Mihalev" class="cta-button" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">✈️ Telegram</a>
+                <a href="mailto:89500007979@mail.ru" class="cta-button" style="background: linear-gradient(135deg, #f43f5e, #fb7185);">📧 Email</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2026 Dmitrii Mihalev | IT Project Manager</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Last updated: January 2026</p>
+    </footer>
+</body>
+</html>
