@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дмитрий Михалев - Руководитель ИТ проектов</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --accent: #06b6d4;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(2, 132, 199, 0.15);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        header .contact {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        header .contact a {
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        header .contact a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            margin: 1.5rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        section h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(6, 182, 212, 0.1) 0%, rgba(2, 132, 199, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+            margin: 1rem 0;
+        }
+
+        .job {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .job:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .job-company {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .job-dates {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .achievement {
+            background: #f1f5f9;
+            padding: 0.6rem 0.9rem;
+            margin: 0.4rem 0;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
+            color: var(--text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .achievement::before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.4rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .skill-category h4 {
+            color: var(--primary);
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e0f2fe 100%);
+            padding: 1.2rem;
+            margin: 0.8rem 0;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .project-meta {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.6rem;
+        }
+
+        .stat {
+            display: inline-block;
+            background: rgba(2, 132, 199, 0.1);
+            padding: 0.2rem 0.6rem;
+            margin: 0.2rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid rgba(2, 132, 199, 0.2);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 0.3rem;
+        }
+
+        .education-item {
+            background: #f1f5f9;
+            padding: 0.8rem;
+            margin: 0.7rem 0;
+            border-radius: 4px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .education-year {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .education-title {
+            font-weight: 600;
+            margin: 0.3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .education-org {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .about {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .about p {
+            margin-bottom: 0.8rem;
+        }
+
+        .about strong {
+            color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            font-size: 0.85rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem 0.3rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .column-item {
+            padding: 1rem;
+            background: #f1f5f9;
+            border-radius: 6px;
+        }
+
+        .column-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .column-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0.2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 1.2rem;
+                margin: 1rem auto;
+            }
+
+            section h2 {
+                font-size: 1.2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+
+            .job-header {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #f1f5f9;
+                --text-light: #cbd5e1;
+                --bg: #0f172a;
+                --card-bg: #1e293b;
+                --border: #334155;
+            }
+
+            body {
+                background: linear-gradient(135deg, #0f172a 0%, #1a2a47 100%);
+            }
+
+            section {
+                background: var(--card-bg);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            .skill-category {
+                background: #334155;
+            }
+
+            .project {
+                background: linear-gradient(135deg, #1e293b 0%, #0f2a3e 100%);
+            }
+
+            .education-item {
+                background: #334155;
+            }
+
+            .achievement {
+                background: #334155;
+            }
+
+            .column-item {
+                background: #334155;
+            }
+
+            .stat-box {
+                background: linear-gradient(135deg, rgba(2, 132, 199, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+                border-color: rgba(2, 132, 199, 0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Дмитрий Михалев</h1>
+        <div class="subtitle">Руководитель ИТ проектов | Менеджер проектов | Системный архитектор</div>
+        <div class="contact">
+            <a href="tel:+79500007979">📞 +7 (950) 000-7979</a>
+            <a href="https://telegram.me/Dmitrii_Mihalev">✈️ Telegram</a>
+            <a href="mailto:89500007979@mail.ru">📧 Email</a>
+            <a href="https://wa.me/79500007979">💬 WhatsApp</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- О себе -->
+        <section>
+            <h2>О себе</h2>
+            <div class="about">
+                <p>Опытный руководитель ИТ проектов с <strong>11+ годами опыта</strong> управления сложными корпоративными проектами и кросс-функциональными командами (до 45 человек). Специализация: методологии Agile, архитектура ПО и выстраивание связи между бизнесом и технологиями.</p>
+                <p>Доказанный опыт управления бюджетами до <strong>₽250+ млн</strong>, внедрения корпоративных систем и достижения ощутимых бизнес-результатов. Успешно доставляю проекты в срок, оптимизирую затраты и развиваю лидерские навыки.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number">11+</div>
+                    <div class="stat-label">лет опыта</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">проектов</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">₽250M+</div>
+                    <div class="stat-label">бюджета</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">человек в команде</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Текущая должность -->
+        <section>
+            <h2>Текущая должность</h2>
+            <div class="highlight">
+                <div class="job-title">Руководитель ИТ проектов</div>
+                <div class="job-company">Газпром нефть, ПАО — Нефть и газ</div>
+                <div class="job-dates">апрель 2023 – по настоящее время (2+ года)</div>
+            </div>
+
+            <h3>Ключевые проекты</h3>
+            
+            <div class="project">
+                <div class="project-name">Личный кабинет покупателя/поставщика (B2B E-Commerce)</div>
+                <div class="project-meta">Период: 24 месяца | Пользователей: 19 000+ | Бюджет: ₽150+ млн</div>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Запущена на 2 месяца раньше срока. Полностью интегрированная платформа электронной коммерции для порталов поставщиков и покупателей.</p>
+                <div>
+                    <span class="stat">B2B E-Commerce</span>
+                    <span class="stat">Scrum</span>
+                    <span class="stat">Управление бюджетом</span>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-name">Система дистанционного контроля с использованием AR</div>
+                <div class="project-meta">Период: 24 месяца | Пользователей: 2 000+ | Бюджет: ₽50+ млн</div>
+                <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Внедрение решения дополненной реальности для удалённого контроля объектов на iOS, Android и Web платформах.</p>
+                <div>
+                    <span class="stat">AR/VR</span>
+                    <span class="stat">Кросс-платформа</span>
+                    <span class="stat">B2B/B2G</span>
+                </div>
+            </div>
+
+            <h3>Ключевые достижения</h3>
+            <div class="achievement">Запустил проект «Личный кабинет поставщика» на 2 месяца раньше за счет оптимизации бэклога, сэкономив 1 000+ ч/ч в месяц</div>
+            <div class="achievement">Сократил Lead time на 10%, снизив затраты разработки на 7% при сохранении качества</div>
+            <div class="achievement">Оптимизировал бюджеты 2 проектов на 15% (сэкономив ₽25+ млн) путём ресорсинга и переговоров с вендорами</div>
+            <div class="achievement">Стандартизировал чек-лист приёмо-сдаточных испытаний, сократив время выката в продакшн на 15%</div>
+            <div class="achievement">Наладил процессы команды AR/VR, за 3 месяца пересмотрев требования, сформировав бэклог и развернув прототип</div>
+        </section>
+
+        <!-- Опыт работы -->
+        <section>
+            <h2>Опыт работы</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Руководитель ИТ проектов</div>
+                        <div class="job-company">Омега Технологии будущего — Системная интеграция</div>
+                    </div>
+                    <div class="job-dates">янв 2021 – апр 2023 (2.3 года)</div>
+                </div>
+                <p style="margin-bottom: 0.7rem; color: var(--text-light); font-size: 0.9rem;">Управление проектами внедрения и разработки для клиентов B2B/B2G. Руководство кросс-функциональными командами из 18+ человек.</p>
+                <div class="achievement">Успешно внедрял КИС для 5+ государственных и муниципальных учреждений, повысив эффективность отчётности на 40%</div>
+                <div class="achievement">Разработал стандартизированное решение 1С Документооборот, ускорив внедрение на 20%</div>
+                <div class="achievement">Заключил 3 дополнительных договора на доработку, увеличив выручку проекта на 28%</div>
+                <div class="achievement">Снизил стоимость оборудования на 25% через переторжку и переговоры с вендорами</div>
+                <div class="achievement">Внедрил систему стендапов, повысив вовлечённость команды на 25% и снизив текучесть на 0%</div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Руководитель проектов</div>
+                        <div class="job-company">ООО Связьторг №1 — Телекоммуникации</div>
+                    </div>
+                    <div class="job-dates">янв 2015 – ноя 2020 (5.9 лет)</div>
+                </div>
+                <p style="margin-bottom: 0.7rem; color: var(--text-light); font-size: 0.9rem;">Управление проектами продаж, закупок и развития рынка для крупных клиентов.</p>
+                <div class="achievement">Увеличил объём продаж по 3 крупным проектам на 50% за 2 года через CRM и оптимизацию</div>
+                <div class="achievement">Внедрил систему контроля дебиторской задолженности, сократив просрочку на 35%</div>
+                <div class="achievement">Реализовал проект снижения затрат на закупки, достигнув 15% экономии (60+ млн руб.)</div>
+                <div class="achievement">Повысил выполнение KPI на 125% через программу наставничества и развития</div>
+                <div class="achievement">Организовал управление ключевыми клиентами, сгенерировав 60+ млн руб. годового оборота</div>
+            </div>
+        </section>
+
+        <!-- Технический стек -->
+        <section>
+            <h2>Технический стек и инструменты</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Языки и фреймворки</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">Node.js</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Базы данных</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">GreenPlum</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">ElasticSearch</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>DevOps и CI/CD</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">GitLab CI/CD</span>
+                        <span class="skill-tag">Ansible</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Безопасность</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SAST/DAST</span>
+                        <span class="skill-tag">Encryption</span>
+                        <span class="skill-tag">DevSecOps</span>
+                        <span class="skill-tag">DLP</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Мониторинг</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag">Qlik Sense</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>PM и сотрудничество</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JIRA</span>
+                        <span class="skill-tag">Confluence</span>
+                        <span class="skill-tag">Notion</span>
+                        <span class="skill-tag">Miro</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PM компетенции -->
+        <section>
+            <h2>Компетенции управления проектами</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Методологии</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Kanban</span>
+                        <span class="skill-tag">Waterfall</span>
+                        <span class="skill-tag">Lean</span>
+                        <span class="skill-tag">PRINCE2</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>PMBOK области</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scope</span>
+                        <span class="skill-tag">Time</span>
+                        <span class="skill-tag">Cost</span>
+                        <span class="skill-tag">Quality</span>
+                        <span class="skill-tag">Risk</span>
+                        <span class="skill-tag">Stakeholder</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Ключевые навыки</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Лидерство</span>
+                        <span class="skill-tag">Управление бюджетом</span>
+                        <span class="skill-tag">Управление рисками</span>
+                        <span class="skill-tag">Стейкхолдеры</span>
+                        <span class="skill-tag">Бизнес-анализ</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Техническое</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">System Design</span>
+                        <span class="skill-tag">Архитектура</span>
+                        <span class="skill-tag">Требования</span>
+                        <span class="skill-tag">QA/Testing</span>
+                        <span class="skill-tag">Автоматизация</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Образование -->
+        <section>
+            <h2>Образование и сертификаты</h2>
+
+            <h3>Образование</h3>
+            <div class="education-item">
+                <div class="education-year">2015</div>
+                <div class="education-title">Инженер транспорта и технологического оборудования</div>
+                <div class="education-org">Санкт-Петербургский государственный экономический университет</div>
+            </div>
+
+            <h3>Курсы и сертификаты</h3>
+            <div class="education-item">
+                <div class="education-year">2024</div>
+                <div class="education-title">Delivery Manager & Основы Канбан-систем</div>
+                <div class="education-org">Scrum Trek, Корпоративный университет Газпром Нефти</div>
+            </div>
+            <div class="education-item">
+                <div class="education-year">2023</div>
+                <div class="education-title">Agile и Scrum в проектах | Школа лидеров проектов 4.0</div>
+                <div class="education-org">Корпоративный университет Газпром Нефти</div>
+            </div>
+            <div class="education-item">
+                <div class="education-year">2022</div>
+                <div class="education-title">Менеджмент и управление в IT</div>
+                <div class="education-org">Яндекс</div>
+            </div>
+            <div class="education-item">
+                <div class="education-year">2025</div>
+                <div class="education-title">DevOps простым языком & Linux Теория</div>
+                <div class="education-org">STEPIC</div>
+            </div>
+        </section>
+
+        <!-- Языки -->
+        <section>
+            <h2>Языки</h2>
+            <div class="two-column">
+                <div class="column-item">
+                    <h4>Русский</h4>
+                    <p>Родной язык</p>
+                </div>
+                <div class="column-item">
+                    <h4>Английский</h4>
+                    <p>A2 - Элементарный</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Дополнительная информация -->
+        <section>
+            <h2>Местоположение и дополнительно</h2>
+            <div class="two-column">
+                <div class="column-item">
+                    <h4>📍 Место проживания</h4>
+                    <p>Санкт-Петербург, Россия</p>
+                    <p style="font-size: 0.85rem; margin-top: 0.3rem;">Открыт к возможностям в Москве</p>
+                </div>
+                <div class="column-item">
+                    <h4>🎯 Формат работы</h4>
+                    <p>На месте работодателя / Полная занятость</p>
+                    <p style="font-size: 0.85rem; margin-top: 0.3rem;">Готов к командировкам</p>
+                </div>
+                <div class="column-item">
+                    <h4>🚗 Водительское удостоверение</h4>
+                    <p>Категории B, C</p>
+                </div>
+                <div class="column-item">
+                    <h4>🌟 Дополнительно</h4>
+                    <p>Prompt Engineering</p>
+                    <p style="font-size: 0.85rem; margin-top: 0.3rem;">Лидер книжного клуба (PM литература)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Секция -->
+        <section style="text-align: center; background: linear-gradient(135deg, rgba(2, 132, 199, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);">
+            <h2>Давайте свяжемся</h2>
+            <p style="font-size: 0.95rem; color: var(--text-light); margin-bottom: 1.2rem;">
+                Открыт к обсуждениям вакансий, совместным проектам и консультациям по управлению проектами
+            </p>
+            <div style="display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap;">
+                <a href="tel:+79500007979" class="cta-button">📞 Позвоните</a>
+                <a href="https://telegram.me/Dmitrii_Mihalev" class="cta-button" style="background: linear-gradient(135deg, #0ea5e9, #06b6d4);">✈️ Telegram</a>
+                <a href="mailto:89500007979@mail.ru" class="cta-button" style="background: linear-gradient(135deg, #f43f5e, #fb7185);">📧 Email</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2026 Дмитрий Михалев | Руководитель ИТ проектов</p>
+        <p style="font-size: 0.8rem; margin-top: 0.3rem;">Последнее обновление: январь 2026</p>
+    </footer>
+</body>
+</html>
